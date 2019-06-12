@@ -6,10 +6,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FrontComponent } from './front.component';
 import { MatCheckboxModule, MatMenuModule, MatButtonModule, MatToolbarModule, MatIconModule, MatGridListModule } from '@angular/material';
+
 import { AboutComponent } from './about/about.component';
 import { TopicsComponent } from './topics/topics.component';
-import { ContactComponent } from './contact/contact.component';
 import { BusinessComponent } from './business/business.component';
+import { ContactComponent } from './contact/contact.component';
 
 const routes: Routes = [
   {
@@ -17,7 +18,10 @@ const routes: Routes = [
     component: FrontComponent,
     children: [
     { path: '', component: HomeComponent },
-    { path: 'about', component: AboutComponent }
+    { path: 'about', component: AboutComponent },
+    { path: 'topics', component: TopicsComponent },
+    { path: 'business', component: BusinessComponent },
+    { path: 'contact', component: ContactComponent }
   ]}
 ];
 
@@ -28,9 +32,7 @@ const routes: Routes = [
     HeaderComponent,
     FooterComponent,
     AboutComponent,
-    TopicsComponent,
-    ContactComponent,
-    BusinessComponent
+    TopicsComponent
   ],
   imports: [
     CommonModule,
