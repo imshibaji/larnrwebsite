@@ -1,0 +1,61 @@
+<mat-progress-bar *ngIf="loaded" mode="indeterminate"></mat-progress-bar>
+<div class="container-fluid">
+<div class="row body">
+  <div class="col-sm-4">
+    <div class="card m-2">
+      <div class="card-header">
+        Article Add / Edit
+      </div>
+
+    <div class="card-body">
+      <form>
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input type="text" class="form-control" id="title" placeholder="Enter Title">
+        </div>
+        <div class="form-group">
+          <label for="details">Details</label>
+          <textarea class="form-control" id="details" placeholder="Details"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="details">Link</label>
+          <input type="text" class="form-control" id="link" placeholder="Link">
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="reset" class="btn btn-warning">Reset</button>
+      </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-8">
+    <table class="table m-2">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Title</th>
+          <th scope="col">Details</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+        </tr>
+        <tr>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>@fat</td>
+        </tr>
+        <tr>
+          <td>Larry</td>
+          <td>the Bird</td>
+          <td>@twitter</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+</div>

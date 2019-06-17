@@ -1,0 +1,69 @@
+<mat-progress-bar *ngIf="loaded" mode="indeterminate"></mat-progress-bar>
+<div class="container-fluid">
+<div class="row body">
+  <div class="col-sm-4">
+    <div class="card m-2">
+      <div class="card-header">
+        Video Add / Edit
+      </div>
+
+      <div class="card-body">
+        <form #f="ngForm" (ngSubmit)="saveData(f)">
+          <input type="hidden" name="id" [(ngModel)]="video.id">
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" name="title" [(ngModel)]="video.title" class="form-control" id="title" placeholder="Enter Title">
+          </div>
+          <div class="form-group">
+            <label for="details">Details</label>
+            <textarea class="form-control" name="details" [(ngModel)]="video.details" id="details" placeholder="Details"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="details">Link</label>
+            <input type="text" class="form-control" name="url" [(ngModel)]="video.url" id="link" placeholder="Link">
+          </div>
+          <div class="form-group">
+            <label for="details">Tags</label>
+            <select class="form-control" name="tags" [(ngModel)]="video.tags">
+              <option *ngFor="let tag of tags" [value]="tag.slag">{{ tag.title }}</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Save</button>
+          <button type="reset" class="btn btn-warning">Reset</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-8">
+    <div class="data-view">
+    <table class="table m-2">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Title</th>
+          <th scope="col">Details</th>
+          <th scope="col">Tags</th>
+          <th scope="col">Thumbnail</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let video of videos">
+          <td>{{ video.title.substr(0, 50) }}</td>
+          <td>{{ video.details.substr(0, 250) }}</td>
+          <td>{{ video.tags }}</td>
+          <td><img [src]="getImage(video.url)"></td>
+          <td>
+            <div class="btn-group">
+              <button class="btn btn-info" (click)="editVideo(video)">Edit</button>
+              <button class="btn btn-danger" (click)="deleteVideo(video)">Delete</button>
+            </div>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+    </div>
+  </div>
+</div>
+</div>

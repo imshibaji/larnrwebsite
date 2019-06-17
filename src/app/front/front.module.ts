@@ -32,7 +32,9 @@ const routes: Routes = [
     HeaderComponent,
     FooterComponent,
     AboutComponent,
-    TopicsComponent
+    TopicsComponent,
+    BusinessComponent,
+    ContactComponent
   ],
   imports: [
     CommonModule,

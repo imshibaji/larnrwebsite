@@ -4,8 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   { path: '', loadChildren: './front/front.module#FrontModule' },
+  { path: '', loadChildren: './admin/admin.module#AdminModule' },
   { path: 'login', component: LoginComponent },
-  { path: 'admin', loadChildren: './admin/admin.module#AdminModule' }
 ];
 
 @NgModule({
