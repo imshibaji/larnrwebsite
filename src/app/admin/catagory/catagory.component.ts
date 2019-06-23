@@ -40,7 +40,11 @@ export class CatagoryComponent implements OnInit {
 
     this.db.collection('categories').doc(data.id).set(data);
 
+    this.reset();
     this.snackBar.open('Catagory Data is saved in server.');
+  }
+
+  reset() {
     this.catagory = {
       id: '',
       title: '',

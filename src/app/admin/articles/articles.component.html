@@ -8,21 +8,30 @@
       </div>
 
     <div class="card-body">
-      <form>
+      <form #f="ngForm" (ngSubmit)="save(f)">
+        <input type="hidden" name="id" [(ngModel)]="article.id">
         <div class="form-group">
           <label for="title">Title</label>
-          <input type="text" class="form-control" id="title" placeholder="Enter Title">
+          <input type="text" name="title" [(ngModel)]="article.title" class="form-control" id="title"
+            placeholder="Enter Title">
         </div>
         <div class="form-group">
           <label for="details">Details</label>
-          <textarea class="form-control" id="details" placeholder="Details"></textarea>
+          <ejs-richtexteditor name="details" [(ngModel)]="article.details"></ejs-richtexteditor>
+          <!-- <textarea name="details" [(ngModel)]="article.details" class="form-control" placeholder="Details"></textarea> -->
         </div>
         <div class="form-group">
           <label for="details">Link</label>
-          <input type="text" class="form-control" id="link" placeholder="Link">
+          <input type="text" name="url" [(ngModel)]="article.url" class="form-control" placeholder="Link">
+        </div>
+        <div class="form-group">
+          <label for="details">Tags</label>
+          <select class="form-control" name="tags" [(ngModel)]="article.tags">
+            <option *ngFor="let tag of tags" [value]="tag.slag">{{ tag.title }}</option>
+          </select>
         </div>
         <button type="submit" class="btn btn-primary">Save</button>
-        <button type="reset" class="btn btn-warning">Reset</button>
+        <button type="button" (click)="reset()" class="btn btn-warning">Reset</button>
       </form>
       </div>
     </div>
@@ -34,25 +43,23 @@
         <tr>
           <th scope="col">Title</th>
           <th scope="col">Details</th>
+          <th scope="col">Tags</th>
           <th scope="col">Actions</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
+        <tr *ngFor="let article of articles">
+          <td>{{ article.title.substr(0, 50)+'...' }}</td>
+          <td>{{ article.details.substr(0, 250)+'...' }}</td>
+          <td>{{ article.tags }}</td>
+          <td>
+            <div class="btn-group">
+              <button class="btn btn-info" (click)="edit(article)">Edit</button>
+              <button class="btn btn-danger" (click)="delete(article)">Delete</button>
+            </div>
+          </td>
         </tr>
-        <tr>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <td>Larry</td>
-          <td>the Bird</td>
-          <td>@twitter</td>
-        </tr>
+
       </tbody>
     </table>
 

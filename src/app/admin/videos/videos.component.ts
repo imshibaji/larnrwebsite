@@ -18,6 +18,7 @@ export class VideosComponent implements OnInit {
     url: '',
     tags: [''],
   };
+
   constructor(private db: AngularFirestore, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
@@ -51,16 +52,20 @@ export class VideosComponent implements OnInit {
 
       this.snackBar.open('Video Data saved into the server');
 
-      this.video = {
-        id: '',
-        title: '',
-        details: '',
-        url: '',
-        tags: [''],
-      };
+      this.reset();
     } catch (error) {
       console.log(error);
     }
+  }
+
+  reset() {
+    this.video = {
+      id: '',
+      title: '',
+      details: '',
+      url: '',
+      tags: [''],
+    };
   }
 
   editVideo(video) {

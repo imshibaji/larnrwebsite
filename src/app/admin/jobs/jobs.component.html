@@ -1,23 +1,66 @@
+<mat-progress-bar *ngIf="loaded" mode="indeterminate"></mat-progress-bar>
+<div class="container-fluid">
 <div class="row body">
   <div class="col-sm-4">
     <div class="card m-2">
       <div class="card-header">
         Jobs Add / Edit
       </div>
-
       <div class="card-body">
-        <form>
+        <form #f="ngForm" (ngSubmit)="save(f)">
+          <input type="hidden" name="id" [(ngModel)]="job.id">
           <div class="form-group">
             <label for="title">Title</label>
-            <input type="text" class="form-control" id="title" placeholder="Enter Title">
+            <input type="text" name="title" [(ngModel)]="job.title" class="form-control" id="title"
+              placeholder="Enter Title">
           </div>
           <div class="form-group">
             <label for="details">Details</label>
-            <textarea class="form-control" id="details" placeholder="Details"></textarea>
+            <ejs-richtexteditor name="details" [(ngModel)]="job.details"></ejs-richtexteditor>
+            <!-- <textarea name="details" [(ngModel)]="job.details" class="form-control" placeholder="Details"></textarea> -->
           </div>
           <div class="form-group">
-            <label for="details">Link</label>
-            <input type="text" class="form-control" id="link" placeholder="Link">
+            <label>Status</label>
+            <select name="status" [(ngModel)]="job.status" class="form-control">
+              <option value="open">Open</option>
+              <option value="closed">Closed</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Tags</label>
+            <select name="tags" [(ngModel)]="job.stags" class="form-control">
+              <option *ngFor="let tag of tags" [value]="tag.title">{{ tag.title }}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Company Name</label>
+            <input type="text" name="company" [(ngModel)]="job.company" class="form-control"
+              placeholder="Enter Company">
+          </div>
+          <div class="form-group">
+            <label>Company Email</label>
+            <input type="text" name="company_email" [(ngModel)]="job.company_email" class="form-control"
+              placeholder="Enter Company Email">
+          </div>
+          <div class="form-group">
+            <label>Company Website</label>
+            <input type="text" name="company_website" [(ngModel)]="job.company_website" class="form-control"
+              placeholder="Enter Company Website">
+          </div>
+          <div class="form-group">
+            <label>Company Phone</label>
+            <input type="text" name="company_phone" [(ngModel)]="job.company_phone" class="form-control"
+              placeholder="Enter Company Phone">
+          </div>
+          <div class="form-group">
+            <label>Contact Person</label>
+            <input type="text" name="contact_person" [(ngModel)]="job.contact_person" class="form-control"
+              placeholder="Enter Contact Person">
+          </div>
+          <div class="form-group">
+            <label>Contact Person Number</label>
+            <input type="text" name="contact_person_number" [(ngModel)]="job.contact_person_number" class="form-control"
+              placeholder="Enter Contact Person Number">
           </div>
           <button type="submit" class="btn btn-primary">Save</button>
           <button type="reset" class="btn btn-warning">Reset</button>
@@ -31,28 +74,30 @@
       <thead class="thead-dark">
         <tr>
           <th scope="col">Title</th>
-          <th scope="col">Details</th>
+          <th scope="col">Company</th>
+          <th scope="col">Website</th>
+          <th scope="col">Status</th>
+          <th scope="col">Tags</th>
           <th scope="col">Actions</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <td>Larry</td>
-          <td>the Bird</td>
-          <td>@twitter</td>
+        <tr *ngFor="let job of jobs">
+          <td>{{ job.title }}</td>
+          <td>{{ job.company }}</td>
+          <td>{{ job.company_website }}</td>
+          <td>{{ job.status }}</td>
+          <td>{{ job.tags }}</td>
+          <td>
+            <div class="btn-group">
+              <button class="btn btn-info" (click)="edit(job)">Edit</button>
+              <button class="btn btn-danger" (click)="deleteVideo(job)">Delete</button>
+            </div>
+          </td>
         </tr>
       </tbody>
     </table>
 
   </div>
+</div>
 </div>

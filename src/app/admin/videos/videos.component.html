@@ -1,4 +1,3 @@
-<mat-progress-bar *ngIf="loaded" mode="indeterminate"></mat-progress-bar>
 <div class="container-fluid">
 <div class="row body">
   <div class="col-sm-4">
@@ -16,10 +15,11 @@
           </div>
           <div class="form-group">
             <label for="details">Details</label>
-            <textarea class="form-control" name="details" [(ngModel)]="video.details" id="details" placeholder="Details"></textarea>
+            <ejs-richtexteditor name="details" [(ngModel)]="video.details"></ejs-richtexteditor>
+            <!-- <textarea class="form-control" name="details" [(ngModel)]="video.details" id="details" placeholder="Details"></textarea> -->
           </div>
           <div class="form-group">
-            <label for="details">Link</label>
+            <label for="details">YouTube Video Link</label>
             <input type="text" class="form-control" name="url" [(ngModel)]="video.url" id="link" placeholder="Link">
           </div>
           <div class="form-group">
@@ -29,7 +29,7 @@
             </select>
           </div>
           <button type="submit" class="btn btn-primary">Save</button>
-          <button type="reset" class="btn btn-warning">Reset</button>
+          <button type="button" class="btn btn-warning" (click)="reset()">Clear</button>
         </form>
       </div>
     </div>
@@ -63,6 +63,10 @@
 
       </tbody>
     </table>
+    <mat-progress-bar *ngIf="loaded" mode="indeterminate"></mat-progress-bar>
+    </div>
+    <div class="data-links">
+      <p class="text-center">Total {{ videos.length }} Numbers of Videos are Listed</p>
     </div>
   </div>
 </div>
