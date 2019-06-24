@@ -1,3 +1,69 @@
-<p>
-  banner works!
-</p>
+<div class="container-fluid">
+<div class="row body">
+  <div class="col-md-4">
+    <div class="card m-2">
+      <div class="card-header">
+        Banner Add / Edit
+      </div>
+      <div class="card-body">
+        <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+          <input type="hidden" name="id" [(ngModel)]="banner.id">
+          <div class="form-group">
+            <label>Image Choose</label>
+            <input type="file" (change)="onFileSelect($event)" accept=".png,.jpg">
+          </div>
+          <div class="form-group">
+            <label>Title</label>
+            <input type="text" name="title" required [(ngModel)]="banner.title" class="form-control" placeholder="Image Title">
+          </div>
+            <div class="form-group">
+              <label>Satus</label>
+              <select class="form-control" name="status" [(ngModel)]="banner.status">
+                <option>active</option>
+                <option>inactive</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Storage Path</label>
+              <input type="text" name="path" [(ngModel)]="banner.path" class="form-control" readonly placeholder="Image Path">
+            </div>
+            <!-- <div class="form-group">
+              <label>Image URL</label>
+              <input type="text" name="imgsrc" [(ngModel)]="banner.imgsrc" class="form-control" readonly placeholder="Image URL">
+            </div> -->
+            <div *ngIf="isLoaded" class="form-group">
+              <mat-progress-bar mode="determinate" [value]="uploadPercent | async"></mat-progress-bar>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-info">Save</button>
+              <button type="button" (click)="onClear()" class="btn btn-warning">Clear</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <table class="table m-2">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Img</th>
+          <th scope="col">Title</th>
+          <th scope="col">Path</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let banner of banners">
+          <td><img [src]="banner.imgsrc" width="100"></td>
+          <td>{{ banner.title }}</td>
+          <td>{{ banner.path }}</td>
+          <td>
+            <button class="btn btn-danger" (click)="delete(banner)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <mat-progress-bar *ngIf="isOnLoaded" mode="indeterminate"></mat-progress-bar>
+  </div>
+</div>
+</div>

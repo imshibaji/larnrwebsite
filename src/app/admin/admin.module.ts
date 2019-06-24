@@ -2,8 +2,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 import { RichTextEditorAllModule } from '@syncfusion/ej2-angular-richtexteditor';
+import { MatTabsModule } from '@angular/material/tabs';
 
-import { NgModule } from '@angular/core';
+import { NgModule, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminComponent } from './admin.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -17,6 +18,7 @@ import { HeaderComponent } from './common/header/header.component';
 import { FooterComponent } from './common/footer/footer.component';
 import { FormsModule } from '@angular/forms';
 import { BannerComponent } from './banner/banner.component';
+import { MatButtonModule, MatSelectModule } from '@angular/material';
 
 
 const routes: Routes = [
@@ -45,7 +47,7 @@ const routes: Routes = [
     ArticlesComponent,
     HeaderComponent,
     FooterComponent,
-    BannerComponent
+    BannerComponent,
   ],
   imports: [
     CommonModule,
@@ -53,7 +55,10 @@ const routes: Routes = [
     MatProgressBarModule,
     MatSnackBarModule,
     RouterModule.forChild(routes),
-    RichTextEditorAllModule
+    RichTextEditorAllModule,
+    MatTabsModule,
+    MatButtonModule,
+    MatSelectModule
   ],
   providers: [
     { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2500 } }
