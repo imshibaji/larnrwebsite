@@ -1,3 +1,4 @@
+<div class="container-fluid">
 <div class="row body">
   <div class="col-sm-4">
     <div class="card m-2">
@@ -6,21 +7,28 @@
       </div>
 
       <div class="card-body">
-        <form>
+        <form #f="ngForm" (ngSubmit)="save(f)">
+          <input type="hidden" name="id" [(ngModel)]="new.id">
           <div class="form-group">
             <label for="title">Title</label>
-            <input type="text" class="form-control" id="title" placeholder="Enter Title">
+            <input type="text" class="form-control" name="title" [(ngModel)]="new.title" placeholder="Enter Title">
           </div>
           <div class="form-group">
             <label for="details">Details</label>
-            <textarea class="form-control" id="details" placeholder="Details"></textarea>
+            <textarea class="form-control" name="details" [(ngModel)]="new.details" placeholder="Message"></textarea>
           </div>
           <div class="form-group">
             <label for="details">Link</label>
-            <input type="text" class="form-control" id="link" placeholder="Link">
+            <input type="text" class="form-control" name="link" [(ngModel)]="new.link" placeholder="Link">
+          </div>
+          <div class="form-group">
+            <label>Tags</label>
+            <select class="form-control" name="tags" [(ngModel)]="new.tags">
+              <option *ngFor="let tag of tags" [value]="tag.title">{{ tag.title }}</option>
+            </select>
           </div>
           <button type="submit" class="btn btn-primary">Save</button>
-          <button type="reset" class="btn btn-warning">Reset</button>
+          <button type="button" class="btn btn-warning" (click)="reset()">Clear</button>
         </form>
       </div>
     </div>
@@ -32,27 +40,27 @@
         <tr>
           <th scope="col">Title</th>
           <th scope="col">Details</th>
+          <th scope="col">Link</th>
+          <th scope="col">Tags</th>
           <th scope="col">Actions</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <td>Larry</td>
-          <td>the Bird</td>
-          <td>@twitter</td>
+        <tr *ngFor="let n of news">
+          <td>{{ n.title }}</td>
+          <td>{{ n.details}}</td>
+          <td>{{ n.link }}</td>
+          <td>{{ n.tags }}</td>
+          <td>
+            <div class="btn-group">
+              <button class="btn btn-info" (click)="edit(n)">Edit</button>
+              <button class="btn btn-danger" (click)="delete(n)">Delete</button>
+            </div>
+          </td>
         </tr>
       </tbody>
     </table>
 
   </div>
+</div>
 </div>

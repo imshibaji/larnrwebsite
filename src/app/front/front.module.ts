@@ -17,12 +17,13 @@ const routes: Routes = [
     path: '',
     component: FrontComponent,
     children: [
-    { path: '', component: HomeComponent },
-    { path: 'about', component: AboutComponent },
-    { path: 'topics', component: TopicsComponent },
-    { path: 'business', component: BusinessComponent },
-    { path: 'contact', component: ContactComponent }
-  ]}
+      { path: '', component: HomeComponent },
+      { path: 'about', component: AboutComponent },
+      { path: 'topics', component: TopicsComponent },
+      { path: 'business', component: BusinessComponent },
+      { path: 'contact', component: ContactComponent }
+    ]
+  }
 ];
 
 @NgModule({

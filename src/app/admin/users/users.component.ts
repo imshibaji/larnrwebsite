@@ -1,3 +1,4 @@
+import { AngularFirestore } from '@angular/fire/firestore';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
+  tags: any;
 
-  constructor() { }
+  constructor(private db: AngularFirestore) { }
 
   ngOnInit() {
+    const catagories = this.db.collection('categories').valueChanges();
+
+    catagories.subscribe(res => {
+      this.tags = res;
+    });
   }
 
 }
